@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+
+    <title>FyaarKart: AR+3D Experiance</title>
+    <link href="logo.png" rel="icon">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        .body {
+            margin: 20px auto 90px auto;
+            max-width: 1400px;
+            width: 95%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* iframe { width: 100%; height: 100%; } */
+        .lhs-container {
+            position: relative;
+            width: 70%;
+            height: 100%;
+            display: block;
+            float: left;
+        }
+
+        .rhs-container {
+            width: 30%;
+            height: 100%;
+            display: block;
+            float: left;
+        }
+
+        /* .ihbt-footer { display: block; width: 100%;} */
+        .button {
+            font-family: "Poppins";
+            font-size: 15px;
+            font-weight: 300;
+            width: 100%;
+            height: 50px;
+            border-radius: 4px;
+            border: 1px solid #bbb;
+            display: inline-block;
+            padding: 8px 16px;
+            vertical-align: middle;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            background-color: inherit;
+            text-align: center;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .column {
+            float: left;
+            width: 18%;
+            height: 100%;
+            padding: 5px;
+        }
+
+        .column img {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            border: 1px solid #bbb;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .row {
+            margin-left: auto;
+            margin-right: auto;
+            width: 85%;
+            height: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        #mainImg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ihbt-demo-viewer-container {
+            transition: all 0.3s ease-in;
+            max-width: 1400px;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            opacity: 1;
+        }
+
+        .ihbt-demo-viewer-container .iframe-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            max-width: 899px;
+        }
+
+        .ihbt-footer {
+            max-width: 1400px;
+            width: 95%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ihbt-footer img {
+            max-height: 456px;
+            max-width: 446px;
+        }
+
+        h3 {
+            margin: 0;
+            margin-bottom: 13px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Merriweather';
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            font-family: 'Merriweather';
+        }
+
+        h1 {
+            margin: 13px 0;
+            font-size: 25px;
+            font-weight: 600;
+            font-family: 'Merriweather';
+        }
+
+        .configure-btn {
+            background-color: #e5e5e5;
+            color: black;
+            margin-bottom: 40px;
+        }
+
+        .three-d-button {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            top: 0;
+            left: 0px;
+            cursor: pointer;
+            background-image: url("https://inhaabit.com/demo/jalousi/images/360-icon-dark.png");
+            background-size: 70px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+
+<body>
+    <div class="navigator">
+    </div>
+
+    <div class="body">
+        <div class="lhs-container">
+            <div class="main-gallery">
+                <div onclick="threeDView()" class="three-d-button"></div>
+                <img id="mainImg" src="8.jpg">
+            </div>
+            <div class="row">
+                <div class="column">
+                    <img src="8.jpg" onclick="expandImg(this)">
+                </div>
+                <div class="column">
+                    <img src="9.jpg" onclick="expandImg(this)">
+                </div>
+                <div class="column">
+                    <img src="10.jpg" onclick="expandImg(this)">
+                </div>
+                <div class="column">
+                    <img src="11.jpg" onclick="expandImg(this)">
+                </div>
+            </div>
+            <div id="configurator" class="ihbt-demo-viewer-container">
+                <!-- <h2 id="ihbt-config">Configure My Product</h2> -->
+                <div class="iframe-container" id="iframe-container">
+                    <!-- <div onclick="exitConfigurator()" class="back-arrow"></div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function threeDView() {
+        const configurator = document.getElementById("configurator");
+
+        configurator.style.zIndex = '1';
+        configurator.style.opacity = '1';
+
+    }
+
+    function exitConfigurator() {
+        const configurator = document.getElementById("configurator");
+
+        configurator.style.zIndex = '-1';
+        configurator.style.opacity = '0';
+    }
+
+    function dropdown() {
+        var y = document.getElementById("dropdown2");
+        y.className = y.className.replace(" show", "");
+
+
+        var x = document.getElementById("dropdown");
+        if (x.className.indexOf("show") == -1) {
+            x.className += " show";
+        } else {
+            x.className = x.className.replace(" show", "");
+        }
+    }
+    function dropdown2() {
+        var y = document.getElementById("dropdown");
+        y.className = y.className.replace(" show", "");
+
+        var x = document.getElementById("dropdown2");
+        if (x.className.indexOf("show") == -1) {
+            x.className += " show";
+        } else {
+            x.className = x.className.replace(" show", "");
+        }
+    }
+    function expandImg(imgs) {
+        var mainImg = document.getElementById("mainImg");
+        mainImg.src = imgs.src;
+        mainImg.parentElement.style.display = "block";
+    }
+
+    function slideToConfig() {
+        var target = document.getElementById("ihbt-config");
+        target.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+</script>
+
+<script defer src="https://inhaabitcdn.com/configure-ui/v2/ConfigureUI.min.js" onload="
+  new ConfigureUI({id: '60b70c5b5c6f9a0eacc423ca', sku: 'jalousi-sideboard', element: document.getElementById('iframe-container'),  });
+"></script>
